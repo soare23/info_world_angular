@@ -2,6 +2,11 @@
   <div>
     <button (click)="add()">Add new patient</button>
   </div>
+
+  <app-add-or-update
+    *ngIf="showUpdateModal"
+    [patientToBeUpdated]="patientToBeUpdated"
+  ></app-add-or-update>
   <table>
     <thead>
       <tr>
@@ -20,8 +25,8 @@
         <td>{{ patient.gender }}</td>
         <td>
           <div>
-            <button (click)="remove()">Remove</button
-            ><button (click)="update()">Update</button>
+            <button (click)="remove(patient)">Remove</button
+            ><button (click)="openUpdateModal(patient)">Update</button>
           </div>
         </td>
       </tr>
