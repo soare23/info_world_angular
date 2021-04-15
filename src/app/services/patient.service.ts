@@ -1,71 +1,37 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Patient } from '../models/Patient';
+import { Observable } from 'rxjs';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+  }),
+};
 
 @Injectable({
   providedIn: 'root',
 })
 export class PatientService {
-  // list of patients
-  patients: Patient[];
-
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   // Get all patients
-
-  getPatients() {
-    return this.patients;
-  }
-
-  // Get one specific patient
-
-  getPatient(id: number) {
-    this.patients.forEach((patient) => {
-      if (patient.id === id) {
-        return patient;
-      }
-    });
+  getPatients(): Observable<Patient[]> {
+    return this.http.get<Patient[]>(
+      'https://6076f8471ed0ae0017d6a309.mockapi.io/patients'
+    );
   }
 
   // Add new patient
 
-  addPatient(patient: Patient) {
-    const patientToAdd = { ...patient };
-    patientToAdd.id = this.patients.length + 1;
-    this.patients.push(patientToAdd);
+  // Update patient
+  updatePatient(patient: Patient) {
+    return this.http.put(
+      `https://6076f8471ed0ae0017d6a309.mockapi.io/patients/${patient.id}`,
+      patient,
+      httpOptions
+    );
   }
 
-  //Remove patient
-
-  removePatient(id: number) {
-    this.patients.forEach((patient, index) => {
-      if (patient.id === id) {
-        this.patients.splice(index, 1);
-      }
-    });
-  }
-
-  //Edit existing patient
-
-  editPatient(newPatientData: Patient) {
-    this.patients.forEach((patient) => {
-      if (patient.id === newPatientData.id) {
-        patient.firstName = newPatientData.firstName
-          ? newPatientData.firstName
-          : patient.firstName;
-        patient.lastName = newPatientData.lastName
-          ? newPatientData.lastName
-          : patient.lastName;
-        patient.dateOfBirth = newPatientData.dateOfBirth
-          ? newPatientData.dateOfBirth
-          : patient.dateOfBirth;
-        patient.sex = newPatientData.sex ? newPatientData.sex : patient.sex;
-        patient.phoneNumber = newPatientData.phoneNumber
-          ? newPatientData.phoneNumber
-          : patient.phoneNumber;
-        patient.socialNumber = newPatientData.socialNumber
-          ? newPatientData.socialNumber
-          : patient.socialNumber;
-      }
-    });
-  }
+  // Remove patient
 }
