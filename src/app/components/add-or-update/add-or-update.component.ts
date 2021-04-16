@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+
 import { Patient } from 'src/app/models/Patient';
 
 @Component({
@@ -9,17 +10,28 @@ import { Patient } from 'src/app/models/Patient';
 export class AddOrUpdateComponent implements OnInit {
   @Input() patientToBeUpdated: Patient;
   @Input() showUpdateModal: boolean;
+  @Output() closeModal = new EventEmitter();
+
+  addOrUpdateToggle: boolean = false;
 
   firstName: string;
   lastName: string;
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.patientToBeUpdated);
+
+    // check if update or add
+
+    if (this.patientToBeUpdated === undefined) {
+      console.log('patient undefined');
+      this.addOrUpdateToggle = true;
+    }
+  }
 
   hideModal() {
-    this.showUpdateModal = !this.showUpdateModal;
-    console.log('I AM NOT DOING MY JOB PROPERLY');
+    this.closeModal.emit('modal closed');
   }
 
   handleSubmit() {
