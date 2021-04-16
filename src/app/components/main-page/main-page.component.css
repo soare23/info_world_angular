@@ -1,0 +1,31 @@
+.title-container {
+  text-align: center;
+}
+
+.main-page-container {
+  margin-top: 150px;
+  margin: auto;
+  width: fit-content;
+}
+
+.add-patient-btn-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.add-patient-btn-container button {
+  margin-right: 7px;
+}
+
+.loading-bar-container {
+  justify-content: center;
+  align-items: center;
+  width: 350px;
+  height: 100vh;
+  margin: auto;
+  text-align: center;
+}
+
+table {
+  width: 100%;
+}

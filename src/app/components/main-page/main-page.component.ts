@@ -11,20 +11,26 @@ export class MainPageComponent implements OnInit {
   patients: Array<Patient>;
   showUpdateModal: boolean;
   patientToBeUpdated: Patient;
+  loadingData: boolean = true;
 
   constructor(private patientService: PatientService) {}
 
   ngOnInit(): void {
     this.patientService.getPatients().subscribe((patients) => {
       this.patients = patients;
+      setTimeout(() => {
+        this.loadingData = false;
+      }, 3000);
     });
   }
 
-  handleModal() {
+  handleModal($event: any) {
     this.showUpdateModal = !this.showUpdateModal;
   }
 
   add() {
+    this.showUpdateModal = !this.showUpdateModal;
+    this.patientToBeUpdated = undefined;
     console.log('add new patient');
   }
 
@@ -33,7 +39,7 @@ export class MainPageComponent implements OnInit {
   }
 
   openUpdateModal(patient: Patient) {
-    this.handleModal();
+    this.showUpdateModal = !this.showUpdateModal;
     this.patientToBeUpdated = patient;
   }
 }

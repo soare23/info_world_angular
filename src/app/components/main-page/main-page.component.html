@@ -1,35 +1,56 @@
-<div>
-  <div>
-    <button (click)="add()">Add new patient</button>
+<div class="main-page-container">
+  <div class="title-container">
+    <h2>Beauty Clinic Management App</h2>
+  </div>
+  <div *ngIf="!loadingData" class="add-patient-btn-container">
+    <button (click)="add()" class="btn btn-light">Add new patient</button>
   </div>
 
   <app-add-or-update
     *ngIf="showUpdateModal"
     [patientToBeUpdated]="patientToBeUpdated"
+    (closeModal)="handleModal($event)"
   ></app-add-or-update>
-  <table>
-    <thead>
-      <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Date of Birth</th>
-        <th>Gender</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let patient of patients">
-        <td>{{ patient.firstName }}</td>
-        <td>{{ patient.lastName }}</td>
-        <td>{{ patient.dateOfBirth }}</td>
-        <td>{{ patient.gender }}</td>
-        <td>
-          <div>
-            <button (click)="remove(patient)">Remove</button
-            ><button (click)="openUpdateModal(patient)">Update</button>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div>
+    <table
+      *ngIf="!loadingData; else elseBlock"
+      class="table table-dark table-striped table-hover table-bordered"
+    >
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Date of Birth</th>
+          <th>Gender</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let patient of patients">
+          <td>{{ patient.firstName }}</td>
+          <td>{{ patient.lastName }}</td>
+          <td>{{ patient.dateOfBirth }}</td>
+          <td>{{ patient.gender }}</td>
+          <td>
+            <div>
+              <button (click)="openUpdateModal(patient)" class="btn btn-info">
+                Update
+              </button>
+              <button (click)="remove(patient)" class="btn btn-danger">
+                X
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <ng-template #elseBlock>
+    <div class="loading-bar-container">
+      <div>
+        <h3>Loading data...</h3>
+      </div>
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+  </ng-template>
 </div>
