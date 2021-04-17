@@ -20,7 +20,7 @@ export class MainPageComponent implements OnInit {
       this.patients = patients;
       setTimeout(() => {
         this.loadingData = false;
-      }, 3000);
+      }, 2000);
     });
   }
 
@@ -40,6 +40,7 @@ export class MainPageComponent implements OnInit {
 
   openUpdateModal(patient: Patient) {
     this.showUpdateModal = !this.showUpdateModal;
-    this.patientToBeUpdated = patient;
+    this.patientToBeUpdated = { ...patient };
+    // Object.assign(this.patientToBeUpdated, patient);
   }
 }

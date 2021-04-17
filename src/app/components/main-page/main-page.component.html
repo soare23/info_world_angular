@@ -1,3 +1,5 @@
+<div *ngIf="showUpdateModal" class="grey-background-on-modal-open"></div>
+
 <div class="main-page-container">
   <div class="title-container">
     <h2>Beauty Clinic Management App</h2>
@@ -11,6 +13,7 @@
     [patientToBeUpdated]="patientToBeUpdated"
     (closeModal)="handleModal($event)"
   ></app-add-or-update>
+
   <div>
     <table
       *ngIf="!loadingData; else elseBlock"
@@ -32,7 +35,7 @@
           <td>{{ patient.dateOfBirth }}</td>
           <td>{{ patient.gender }}</td>
           <td>
-            <div>
+            <div class="action-buttons-container">
               <button (click)="openUpdateModal(patient)" class="btn btn-info">
                 Update
               </button>
