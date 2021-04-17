@@ -1,28 +1,25 @@
 <div *ngIf="!addOrUpdateToggle; else elseBlock" class="mmodal">
   <form (ngSubmit)="handleSubmit()" class="mmodal-body">
-    <div>
-      <h4>Update patient</h4>
+    <div class="modal-title-container">
+      <h3>Update patient</h3>
     </div>
-    <label for="fname">First name:</label>
-    <input
-      type="text"
-      id="fname"
-      name="fname"
-      value="{{ patientToBeUpdated.firstName }}"
-    /><br /><br />
-    <label for="lname">Last name:</label>
+    <label for="firstName">First name:</label>
+    <input type="text" id="fname" name="firstName" [(ngModel)]="firstName" />
+    <br /><br />
+    <label for="lastName">Last name:</label>
     <input
       type="text"
       id="lname"
-      name="lname"
-      value="{{ patientToBeUpdated.lastName }}"
+      name="lastName"
+      [(ngModel)]="lastName"
     /><br /><br />
     <label for="dob">Date of birth:</label>
     <input
       type="date"
       id="dob"
       name="dob"
-      value="{{ patientToBeUpdated.dateOfBirth }}"
+      max="{{ maxDate }}"
+      [(ngModel)]="dob"
     /><br /><br />
     <label for="gender">Gender:</label>
     <input type="radio" id="male" name="gender" value="male" />
@@ -37,33 +34,53 @@
       type="number"
       id="socialNumber"
       name="socialNumber"
-      value="{{ patientToBeUpdated.socialNumber }}"
+      minlength="13"
+      maxlength="13"
+      [(ngModel)]="socialNumber"
     /><br /><br />
-    <label for="phone">Phone number:</label>
+    <label for="phoneNumber">Phone number:</label>
     <input
-      type="text"
+      type="phone"
       id="phone"
-      name="phone"
-      value="{{ patientToBeUpdated.phoneNumber }}"
+      name="phoneNumber"
+      [(ngModel)]="phoneNumber"
     /><br /><br />
-    <div>
-      <button type="submit">Submit</button>
-      <button type="button" (click)="hideModal()">Cancel</button>
+    <div class="modal-buttons-container">
+      <button type="submit" class="btn btn-info">Submit</button>
+      <button type="button" (click)="hideModal()" class="btn btn-danger">
+        Cancel
+      </button>
     </div>
   </form>
 </div>
 <ng-template #elseBlock
   ><div class="mmodal">
     <form (ngSubmit)="handleSubmit()" class="mmodal-body">
-      <div>
-        <h4>Add new patient</h4>
+      <div class="modal-title-container">
+        <h3>Add new patient</h3>
       </div>
-      <label for="fname">First name:</label>
-      <input type="text" id="fname" name="fname" /><br /><br />
-      <label for="lname">Last name:</label>
-      <input type="text" id="lname" name="lname" /><br /><br />
+      <label for="firstName">First name:</label>
+      <input
+        type="text"
+        id="fname"
+        name="firstName"
+        [(ngModel)]="firstName"
+      /><br /><br />
+      <label for="lastName">Last name:</label>
+      <input
+        type="text"
+        id="lname"
+        name="lastName"
+        [(ngModel)]="lastName"
+      /><br /><br />
       <label for="dob">Date of birth:</label>
-      <input type="date" id="dob" name="dob" /><br /><br />
+      <input
+        type="date"
+        id="dob"
+        name="dateOfBirth"
+        max="{{ maxDate }}"
+        [(ngModel)]="dateOfBirth"
+      /><br /><br />
       <label for="gender">Gender:</label>
       <input type="radio" id="male" name="gender" value="male" />
       <label for="male">Male</label><br />
@@ -71,14 +88,26 @@
       <label for="female">Female</label><br />
       <input type="radio" id="other" name="gender" value="other" />
       <label for="other">Other</label>
-      <br /><br />
+      <br />
       <label for="socialNumber">Social number:</label>
-      <input type="number" id="socialNumber" name="socialNumber" /><br /><br />
+      <input
+        type="number"
+        id="socialNumber"
+        name="socialNumber"
+        [(ngModel)]="socialNumber"
+      /><br /><br />
       <label for="phone">Phone number:</label>
-      <input type="text" id="phone" name="phone" /><br /><br />
-      <div>
-        <button type="submit">Submit</button>
-        <button type="button" (click)="hideModal()">Cancel</button>
+      <input
+        type="text"
+        id="phone"
+        name="phone"
+        [(ngModel)]="phoneNumber"
+      /><br /><br />
+      <div class="modal-buttons-container">
+        <button type="submit" class="btn btn-info">Submit</button>
+        <button type="button" (click)="hideModal()" class="btn btn-danger">
+          Cancel
+        </button>
       </div>
     </form>
   </div></ng-template
