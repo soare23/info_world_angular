@@ -17,17 +17,15 @@
     <input
       type="date"
       id="dob"
-      name="dob"
+      name="dateOfBirth"
       max="{{ maxDate }}"
-      [(ngModel)]="dob"
+      [(ngModel)]="dateOfBirth"
     /><br /><br />
-    <label for="gender">Gender:</label>
-    <input type="radio" id="male" name="gender" value="male" />
-    <label for="male">Male</label><br />
-    <input type="radio" id="female" name="gender" value="female" />
-    <label for="female">Female</label><br />
-    <input type="radio" id="other" name="gender" value="other" />
-    <label for="other">Other</label>
+    <label for="status">Gender</label>
+    <select name="status" [(ngModel)]="gender">
+      <option value="M" [selected]="gender == M">M</option>
+      <option value="F" [selected]="gender == F">F</option>
+    </select>
     <br /><br />
     <label for="socialNumber">Social number:</label>
     <input
@@ -81,13 +79,11 @@
         max="{{ maxDate }}"
         [(ngModel)]="dateOfBirth"
       /><br /><br />
-      <label for="gender">Gender:</label>
-      <input type="radio" id="male" name="gender" value="male" />
-      <label for="male">Male</label><br />
-      <input type="radio" id="female" name="gender" value="female" />
-      <label for="female">Female</label><br />
-      <input type="radio" id="other" name="gender" value="other" />
-      <label for="other">Other</label>
+      <label for="status">Gender</label>
+      <select name="status" [(ngModel)]="gender">
+        <option value="M" [selected]="gender == M">M</option>
+        <option value="F" [selected]="gender == F">F</option>
+      </select>
       <br />
       <label for="socialNumber">Social number:</label>
       <input

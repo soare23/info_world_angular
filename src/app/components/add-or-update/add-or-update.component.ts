@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 
 import { Patient } from 'src/app/models/Patient';
+import { PatientService } from '../../services/patient.service';
 
 @Component({
   selector: 'app-add-or-update',
@@ -23,14 +24,18 @@ export class AddOrUpdateComponent implements OnInit, OnChanges {
   addOrUpdateToggle: boolean = false;
   maxDate: String;
 
+  id: number;
   firstName: string;
   lastName: string;
-  dateOfBirth: String;
+  dateOfBirth: string;
   gender: string;
   socialNumber: number;
   phoneNumber: string;
 
-  constructor() {}
+  updatedPatient: Patient;
+  newPatient: Patient;
+
+  constructor(private patientService: PatientService) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.patientToBeUpdated && this.patientToBeUpdated != undefined) {
@@ -44,8 +49,6 @@ export class AddOrUpdateComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    console.log(this.patientToBeUpdated);
-
     // get current date for max input date selector
 
     this.maxDate = new Date().toISOString().split('T')[0];
@@ -63,11 +66,46 @@ export class AddOrUpdateComponent implements OnInit, OnChanges {
   }
 
   handleSubmit() {
-    console.log(this.firstName);
-    console.log(this.lastName);
-    console.log(this.dateOfBirth);
-    console.log(this.socialNumber);
-    console.log(this.phoneNumber);
-    console.log('form submited');
+    if (this.patientToBeUpdated !== undefined) {
+      // create updated patient and send to DB
+      this.updatedPatient = {
+        id: this.patientToBeUpdated.id,
+        firstName: this.firstName,
+        lastName: this.lastName,
+        dateOfBirth: this.dateOfBirth,
+        gender: this.gender,
+        socialNumber: this.socialNumber,
+        phoneNumber: this.phoneNumber,
+      };
+
+      // send updated patient to DB
+      this.patientService
+        .updatePatient(this.updatedPatient)
+        .subscribe((patient) => {
+          console.log('patient has been updated');
+        });
+
+      // close modal and refresh data
+      this.closeModal.emit('modal closed');
+    } else {
+      //create new patient and send to DB
+      this.newPatient = {
+        id: null,
+        firstName: this.firstName,
+        lastName: this.lastName,
+        dateOfBirth: this.dateOfBirth,
+        gender: this.gender,
+        socialNumber: this.socialNumber,
+        phoneNumber: this.phoneNumber,
+      };
+
+      // send new patient to DB
+      this.patientService.addPatient(this.newPatient).subscribe((patient) => {
+        console.log('new patient added');
+      });
+
+      // close modal and refresh data
+      this.closeModal.emit('modal closed');
+    }
   }
 }
