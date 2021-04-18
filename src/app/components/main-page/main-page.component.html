@@ -1,18 +1,31 @@
-<div *ngIf="showUpdateModal" class="grey-background-on-modal-open"></div>
+<div
+  *ngIf="showUpdateModal || showRemoveConfirmModal"
+  class="grey-background-on-modal-open"
+></div>
 
 <div class="main-page-container">
   <div class="title-container">
     <h2>Beauty Clinic Management App</h2>
   </div>
   <div *ngIf="!loadingData" class="add-patient-btn-container">
-    <button (click)="add()" class="btn btn-light">Add new patient</button>
+    <button (click)="showAddNewPatientModal()" class="btn btn-light">
+      Add new patient
+    </button>
   </div>
 
   <app-add-or-update
     *ngIf="showUpdateModal"
     [patientToBeUpdated]="patientToBeUpdated"
-    (closeModal)="handleModal($event)"
+    (closeModal)="handleAddOrUpdateModal($event)"
   ></app-add-or-update>
+
+  <app-remove-confirm
+    *ngIf="showRemoveConfirmModal"
+    [idOfPatientToBeRemoved]="idOfPatientToBeRemoved"
+    (closeModal)="closeRemoveConfirmModal($event)"
+    (patientRemovedFromDB)="removePatientFromUI($event)"
+  >
+  </app-remove-confirm>
 
   <div>
     <table
@@ -39,7 +52,7 @@
               <button (click)="openUpdateModal(patient)" class="btn btn-info">
                 Update
               </button>
-              <button (click)="remove(patient)" class="btn btn-danger">
+              <button (click)="openRemoveModal(patient)" class="btn btn-danger">
                 X
               </button>
             </div>
