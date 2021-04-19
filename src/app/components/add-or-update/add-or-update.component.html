@@ -1,5 +1,5 @@
 <div *ngIf="!addOrUpdateToggle; else elseBlock" class="mmodal">
-  <form (ngSubmit)="handleSubmit()" class="mmodal-body">
+  <form (ngSubmit)="handleSubmit()" class="mmodal-body" ngNativeValidate>
     <div class="modal-title-container">
       <h1>Update patient</h1>
       <hr />
