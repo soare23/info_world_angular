@@ -18,13 +18,13 @@ export class RemoveConfirmComponent implements OnInit {
   ngOnInit(): void {}
 
   confirmed() {
-    this.closeModal.emit('close remove confirm modal');
-
     // remove patient from DB
     this.patientService
       .removePatient(this.idOfPatientToBeRemoved)
       .subscribe((patient) => {
+        // remove patient from UI
         this.patientRemovedFromDB.emit(this.idOfPatientToBeRemoved);
+        this.closeModal.emit('close remove confirm modal');
         console.log(`patient with ${this.idOfPatientToBeRemoved} was removed`);
       });
   }
