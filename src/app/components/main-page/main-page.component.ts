@@ -50,7 +50,26 @@ export class MainPageComponent implements OnInit {
     this.showRemoveConfirmModal = !this.showRemoveConfirmModal;
   }
 
+  //remove patient from UI
+
   removePatientFromUI(patientId: number) {
     this.patients = this.patients.filter((patient) => patient.id !== patientId);
+  }
+
+  // add new patient to DB and UI
+  addNewPatientToDBandUI(patient: Patient) {
+    this.patientService.addPatient(patient).subscribe((patient) => {
+      this.patients.push(patient);
+    });
+  }
+
+  // update patient in DB and UI
+  updatePatientInDBandUI(patient: Patient) {
+    this.patientService.updatePatient(patient).subscribe((patient) => {
+      let patientIndex = this.patients.findIndex(
+        (findPatient) => findPatient.id === patient.id
+      );
+      this.patients[patientIndex] = patient;
+    });
   }
 }

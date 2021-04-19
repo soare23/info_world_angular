@@ -17,6 +17,8 @@
     *ngIf="showUpdateModal"
     [patientToBeUpdated]="patientToBeUpdated"
     (closeModal)="handleAddOrUpdateModal($event)"
+    (updatedPatientToSend)="updatePatientInDBandUI($event)"
+    (newPatientToSend)="addNewPatientToDBandUI($event)"
   ></app-add-or-update>
 
   <app-remove-confirm
