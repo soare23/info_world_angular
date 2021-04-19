@@ -1,10 +1,11 @@
 <div *ngIf="!addOrUpdateToggle; else elseBlock" class="mmodal">
   <form (ngSubmit)="handleSubmit()" class="mmodal-body">
     <div class="modal-title-container">
-      <h3>Update patient</h3>
+      <h1>Update patient</h1>
+      <hr />
     </div>
     <div class="form-group">
-      <label for="firstName">First name:</label>
+      <label for="firstName" class="distance-1">First name:</label>
       <input
         type="text"
         id="fname"
@@ -13,7 +14,7 @@
         class="form-control-sm"
       />
       <br /><br />
-      <label for="lastName">Last name:</label>
+      <label for="lastName" class="distance-1">Last name:</label>
       <input
         class="form-control-sm"
         type="text"
@@ -21,7 +22,7 @@
         name="lastName"
         [(ngModel)]="lastName"
       /><br /><br />
-      <label for="dob">Date of birth:</label>
+      <label for="dob" class="distance-2">Date of birth:</label>
       <input
         class="form-control-sm"
         type="date"
@@ -30,7 +31,7 @@
         max="{{ maxDate }}"
         [(ngModel)]="dateOfBirth"
       /><br /><br />
-      <label for="status">Gender</label>
+      <label for="status" class="distance-3">Gender:</label>
       <select
         name="status"
         [(ngModel)]="gender"
@@ -41,7 +42,7 @@
         <option value="F" [selected]="gender == F">F</option>
       </select>
       <br /><br />
-      <label for="socialNumber">Social number:</label>
+      <label for="socialNumber" class="distance-4">Social number:</label>
       <input
         class="form-control-sm"
         required
@@ -52,7 +53,7 @@
         placeholder="13 digits number"
         [(ngModel)]="socialNumber"
       /><br /><br />
-      <label for="phoneNumber">Phone number:</label>
+      <label for="phoneNumber" class="distance-4">Phone number:</label>
       <input
         class="form-control-sm"
         required
@@ -76,10 +77,11 @@
   ><div class="mmodal">
     <form (ngSubmit)="handleSubmit()" class="mmodal-body" ngNativeValidate>
       <div class="modal-title-container">
-        <h3>Add new patient</h3>
+        <h1>Add new patient</h1>
+        <hr />
       </div>
       <div class="form-group">
-        <label for="firstName">First name:</label>
+        <label for="firstName" class="distance-1">First name:</label>
         <input
           class="form-control-sm"
           required
@@ -88,7 +90,7 @@
           name="firstName"
           [(ngModel)]="firstName"
         /><br /><br />
-        <label for="lastName">Last name:</label>
+        <label for="lastName" class="distance-1">Last name:</label>
         <input
           class="form-control-sm"
           required
@@ -97,7 +99,7 @@
           name="lastName"
           [(ngModel)]="lastName"
         /><br /><br />
-        <label for="dob">Date of birth:</label>
+        <label for="dob" class="distance-2">Date of birth:</label>
         <input
           class="form-control-sm"
           required
@@ -108,7 +110,7 @@
           [(ngModel)]="dateOfBirth"
         /><br /><br />
         <div>
-          <label for="status">Gender</label>
+          <label for="status" class="distance-3">Gender:</label>
           <select
             name="status"
             [(ngModel)]="gender"
@@ -120,7 +122,7 @@
           </select>
         </div>
         <br />
-        <label for="socialNumber">Social number:</label>
+        <label for="socialNumber" class="distance-4">Social number:</label>
         <input
           class="form-control-sm"
           required
@@ -131,7 +133,7 @@
           placeholder="13 digits number"
           [(ngModel)]="socialNumber"
         /><br /><br />
-        <label for="phone">Phone number:</label>
+        <label for="phone" class="distance-4">Phone number:</label>
         <input
           class="form-control-sm"
           required

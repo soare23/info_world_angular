@@ -13,7 +13,7 @@
   background: #fff;
   margin: 40px;
   padding: 20px;
-  border: solid black;
+  border: solid #37caf0;
   border-radius: 10px;
   text-align: center;
 }
@@ -35,8 +35,37 @@
   margin: 5px;
 }
 
+.form-group {
+  text-align: left !important;
+  padding-left: 50px !important;
+}
+
+.form-control-sm {
+  width: 163px;
+}
+
 label {
   color: black;
   font-size: large;
-  margin: 5px;
+}
+
+.distance-1 {
+  padding-right: 65px;
+}
+
+.distance-2 {
+  padding-right: 50px;
+}
+
+.distance-3 {
+  padding-right: 95px;
+}
+
+.distance-4 {
+  padding-right: 33px;
+}
+
+hr {
+  height: 2px;
+  color: #37caf0;
 }
