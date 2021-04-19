@@ -20,6 +20,8 @@ export class AddOrUpdateComponent implements OnInit, OnChanges {
   @Input() patientToBeUpdated: Patient;
   @Input() showUpdateModal: boolean;
   @Output() closeModal = new EventEmitter();
+  @Output() updatedPatientToSend = new EventEmitter<Patient>();
+  @Output() newPatientToSend = new EventEmitter<Patient>();
 
   addOrUpdateToggle: boolean = false;
   maxDate: String;
@@ -78,14 +80,8 @@ export class AddOrUpdateComponent implements OnInit, OnChanges {
         phoneNumber: this.phoneNumber,
       };
 
-      // send updated patient to DB
-      this.patientService
-        .updatePatient(this.updatedPatient)
-        .subscribe((patient) => {
-          console.log('patient has been updated');
-        });
-
-      // close modal and refresh data
+      // close modal and send patient to DB
+      this.updatedPatientToSend.emit(this.updatedPatient);
       this.closeModal.emit('modal closed');
     } else {
       //create new patient and send to DB
@@ -99,12 +95,8 @@ export class AddOrUpdateComponent implements OnInit, OnChanges {
         phoneNumber: this.phoneNumber,
       };
 
-      // send new patient to DB
-      this.patientService.addPatient(this.newPatient).subscribe((patient) => {
-        console.log('new patient added');
-      });
-
-      // close modal and refresh data
+      // close modal and send patient to DB
+      this.newPatientToSend.emit(this.newPatient);
       this.closeModal.emit('modal closed');
     }
   }
