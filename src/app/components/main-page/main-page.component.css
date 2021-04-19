@@ -3,7 +3,7 @@
 }
 
 .main-page-container {
-  margin-top: 150px !important;
+  padding-top: 150px;
   margin: auto;
   width: fit-content;
 }
