@@ -23,10 +23,17 @@ export class PatientService {
   }
 
   // Add new patient
+  addPatient(patient: Patient): Observable<Patient> {
+    return this.http.post<Patient>(
+      `https://6076f8471ed0ae0017d6a309.mockapi.io/patients`,
+      patient,
+      httpOptions
+    );
+  }
 
   // Update patient
-  updatePatient(patient: Patient) {
-    return this.http.put(
+  updatePatient(patient: Patient): Observable<Patient> {
+    return this.http.put<Patient>(
       `https://6076f8471ed0ae0017d6a309.mockapi.io/patients/${patient.id}`,
       patient,
       httpOptions
@@ -34,4 +41,10 @@ export class PatientService {
   }
 
   // Remove patient
+  removePatient(patientId: number): Observable<Patient> {
+    return this.http.delete<Patient>(
+      `https://6076f8471ed0ae0017d6a309.mockapi.io/patients/${patientId}`,
+      httpOptions
+    );
+  }
 }

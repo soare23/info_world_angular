@@ -1,0 +1,7 @@
+{
+  "/api": {
+    "target": "https://6076f8471ed0ae0017d6a309.mockapi.io/",
+    "secure": true,
+    "changeOrigin": true
+  }
+}
