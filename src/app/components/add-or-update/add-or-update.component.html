@@ -3,46 +3,67 @@
     <div class="modal-title-container">
       <h3>Update patient</h3>
     </div>
-    <label for="firstName">First name:</label>
-    <input type="text" id="fname" name="firstName" [(ngModel)]="firstName" />
-    <br /><br />
-    <label for="lastName">Last name:</label>
-    <input
-      type="text"
-      id="lname"
-      name="lastName"
-      [(ngModel)]="lastName"
-    /><br /><br />
-    <label for="dob">Date of birth:</label>
-    <input
-      type="date"
-      id="dob"
-      name="dateOfBirth"
-      max="{{ maxDate }}"
-      [(ngModel)]="dateOfBirth"
-    /><br /><br />
-    <label for="status">Gender</label>
-    <select name="status" [(ngModel)]="gender">
-      <option value="M" [selected]="gender == M">M</option>
-      <option value="F" [selected]="gender == F">F</option>
-    </select>
-    <br /><br />
-    <label for="socialNumber">Social number:</label>
-    <input
-      type="number"
-      id="socialNumber"
-      name="socialNumber"
-      minlength="13"
-      maxlength="13"
-      [(ngModel)]="socialNumber"
-    /><br /><br />
-    <label for="phoneNumber">Phone number:</label>
-    <input
-      type="phone"
-      id="phone"
-      name="phoneNumber"
-      [(ngModel)]="phoneNumber"
-    /><br /><br />
+    <div class="form-group">
+      <label for="firstName">First name:</label>
+      <input
+        type="text"
+        id="fname"
+        name="firstName"
+        [(ngModel)]="firstName"
+        class="form-control-sm"
+      />
+      <br /><br />
+      <label for="lastName">Last name:</label>
+      <input
+        class="form-control-sm"
+        type="text"
+        id="lname"
+        name="lastName"
+        [(ngModel)]="lastName"
+      /><br /><br />
+      <label for="dob">Date of birth:</label>
+      <input
+        class="form-control-sm"
+        type="date"
+        id="dob"
+        name="dateOfBirth"
+        max="{{ maxDate }}"
+        [(ngModel)]="dateOfBirth"
+      /><br /><br />
+      <label for="status">Gender</label>
+      <select
+        name="status"
+        [(ngModel)]="gender"
+        required
+        class="form-control-sm"
+      >
+        <option value="M" [selected]="gender == M">M</option>
+        <option value="F" [selected]="gender == F">F</option>
+      </select>
+      <br /><br />
+      <label for="socialNumber">Social number:</label>
+      <input
+        class="form-control-sm"
+        required
+        type="text"
+        id="socialNumber"
+        name="socialNumber"
+        pattern="[0-9]{13}"
+        placeholder="13 digits number"
+        [(ngModel)]="socialNumber"
+      /><br /><br />
+      <label for="phoneNumber">Phone number:</label>
+      <input
+        class="form-control-sm"
+        required
+        type="tel"
+        id="phone"
+        name="phone"
+        placeholder="1234-567-890"
+        pattern="[0-9]{4}-[0-9]{3}-[0-9]{3}"
+        [(ngModel)]="phoneNumber"
+      /><br /><br />
+    </div>
     <div class="modal-buttons-container">
       <button type="submit" class="btn btn-info">Submit</button>
       <button type="button" (click)="hideModal()" class="btn btn-danger">
@@ -53,52 +74,75 @@
 </div>
 <ng-template #elseBlock
   ><div class="mmodal">
-    <form (ngSubmit)="handleSubmit()" class="mmodal-body">
+    <form (ngSubmit)="handleSubmit()" class="mmodal-body" ngNativeValidate>
       <div class="modal-title-container">
         <h3>Add new patient</h3>
       </div>
-      <label for="firstName">First name:</label>
-      <input
-        type="text"
-        id="fname"
-        name="firstName"
-        [(ngModel)]="firstName"
-      /><br /><br />
-      <label for="lastName">Last name:</label>
-      <input
-        type="text"
-        id="lname"
-        name="lastName"
-        [(ngModel)]="lastName"
-      /><br /><br />
-      <label for="dob">Date of birth:</label>
-      <input
-        type="date"
-        id="dob"
-        name="dateOfBirth"
-        max="{{ maxDate }}"
-        [(ngModel)]="dateOfBirth"
-      /><br /><br />
-      <label for="status">Gender</label>
-      <select name="status" [(ngModel)]="gender">
-        <option value="M" [selected]="gender == M">M</option>
-        <option value="F" [selected]="gender == F">F</option>
-      </select>
-      <br />
-      <label for="socialNumber">Social number:</label>
-      <input
-        type="number"
-        id="socialNumber"
-        name="socialNumber"
-        [(ngModel)]="socialNumber"
-      /><br /><br />
-      <label for="phone">Phone number:</label>
-      <input
-        type="text"
-        id="phone"
-        name="phone"
-        [(ngModel)]="phoneNumber"
-      /><br /><br />
+      <div class="form-group">
+        <label for="firstName">First name:</label>
+        <input
+          class="form-control-sm"
+          required
+          type="text"
+          id="fname"
+          name="firstName"
+          [(ngModel)]="firstName"
+        /><br /><br />
+        <label for="lastName">Last name:</label>
+        <input
+          class="form-control-sm"
+          required
+          type="text"
+          id="lname"
+          name="lastName"
+          [(ngModel)]="lastName"
+        /><br /><br />
+        <label for="dob">Date of birth:</label>
+        <input
+          class="form-control-sm"
+          required
+          type="date"
+          id="dob"
+          name="dateOfBirth"
+          max="{{ maxDate }}"
+          [(ngModel)]="dateOfBirth"
+        /><br /><br />
+        <div>
+          <label for="status">Gender</label>
+          <select
+            name="status"
+            [(ngModel)]="gender"
+            required
+            class="form-control-sm"
+          >
+            <option value="M" [selected]="gender == M">M</option>
+            <option value="F" [selected]="gender == F">F</option>
+          </select>
+        </div>
+        <br />
+        <label for="socialNumber">Social number:</label>
+        <input
+          class="form-control-sm"
+          required
+          type="text"
+          id="socialNumber"
+          name="socialNumber"
+          pattern="[0-9]{13}"
+          placeholder="13 digits number"
+          [(ngModel)]="socialNumber"
+        /><br /><br />
+        <label for="phone">Phone number:</label>
+        <input
+          class="form-control-sm"
+          required
+          type="tel"
+          id="phone"
+          name="phone"
+          placeholder="1234-567-890"
+          pattern="[0-9]{4}-[0-9]{3}-[0-9]{3}"
+          [(ngModel)]="phoneNumber"
+        /><br /><br />
+      </div>
       <div class="modal-buttons-container">
         <button type="submit" class="btn btn-info">Submit</button>
         <button type="button" (click)="hideModal()" class="btn btn-danger">

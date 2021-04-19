@@ -29,7 +29,6 @@ export class MainPageComponent implements OnInit {
   openUpdateModal(patient: Patient) {
     this.showUpdateModal = !this.showUpdateModal;
     this.patientToBeUpdated = { ...patient };
-    // Object.assign(this.patientToBeUpdated, patient);
   }
 
   handleAddOrUpdateModal($event: any) {
