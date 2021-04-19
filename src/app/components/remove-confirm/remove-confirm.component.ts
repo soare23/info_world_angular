@@ -25,12 +25,10 @@ export class RemoveConfirmComponent implements OnInit {
         // remove patient from UI
         this.patientRemovedFromDB.emit(this.idOfPatientToBeRemoved);
         this.closeModal.emit('close remove confirm modal');
-        console.log(`patient with ${this.idOfPatientToBeRemoved} was removed`);
       });
   }
 
   denied() {
     this.closeModal.emit('close remove confirm modal');
-    console.log('remove patient denied');
   }
 }
