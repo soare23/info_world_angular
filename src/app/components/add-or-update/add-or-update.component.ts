@@ -41,6 +41,7 @@ export class AddOrUpdateComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.patientToBeUpdated && this.patientToBeUpdated != undefined) {
+      this.id = this.patientToBeUpdated.id;
       this.firstName = this.patientToBeUpdated.firstName;
       this.lastName = this.patientToBeUpdated.lastName;
       this.dateOfBirth = this.patientToBeUpdated.dateOfBirth;
